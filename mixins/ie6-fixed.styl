@@ -1,0 +1,22 @@
+// Fixed position support for ie6
+// Warning it only works with pixels
+// Call it like this :
+// 
+// #whatever-element
+//   ie6-fixed(top: 10, left: 10)
+// 
+// will give :
+// 
+// * html #whatever-element {
+//   position: absolute;
+//   left: expression((10+(ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft))+'px');
+//   top: expression((10+(ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop))+'px');
+// }
+// 
+
+ie6-fixed(left=0, top=0)
+  * html &
+    position absolute
+    left unquote("expression((" + left + "+(ignoreMe2=document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft))+'px')")
+    top unquote("expression((" + top + "+(ignoreMe=document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop))+'px')")
+
